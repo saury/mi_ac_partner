@@ -1,0 +1,7 @@
+{
+  "name": "mi_ac_partner",
+  "render_readme": true,
+  "domain": "aqara_gateway",
+  "documentation": "https://github.com/kicer/mi_ac_partner",
+  "issue_tracker": "https://github.com/kicer/mi_ac_partner/issues"
+}
