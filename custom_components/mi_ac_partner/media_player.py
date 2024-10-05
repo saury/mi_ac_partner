@@ -45,7 +45,7 @@ import urllib.request
 from homeassistant.const import (CONF_NAME, CONF_HOST, CONF_TOKEN,
     STATE_PAUSED, STATE_PLAYING, STATE_OFF)
 from homeassistant.components.media_player import (
-    MediaPlayerDevice, PLATFORM_SCHEMA)
+    MediaPlayerEntity, PLATFORM_SCHEMA)
 from homeassistant.components.media_player.const import (
     MEDIA_TYPE_MUSIC, MEDIA_TYPE_PLAYLIST, SUPPORT_NEXT_TRACK,
     SUPPORT_PAUSE, SUPPORT_PLAY, SUPPORT_PLAY_MEDIA, SUPPORT_PREVIOUS_TRACK,
@@ -91,7 +91,7 @@ async def async_setup_platform(hass, config, async_add_devices, discovery_info =
     async_add_devices([acPartner], True)
 
 
-class XiaomiacPartner(MediaPlayerDevice):
+class XiaomiacPartner(MediaPlayerEntity):
     """Representation of a Spotify controller."""
     def __init__(self, midevice, name, model):
         """Initialize."""
