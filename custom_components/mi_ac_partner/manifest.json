@@ -2,8 +2,9 @@
   "domain": "mi_ac_partner",
   "name": "mi_ac_partner",
   "documentation": "https://bbs.hassbian.com/forum.php?mod=viewthread&tid=6934",
-  "requirements": [],
+  "requirements": ["python-miio>=0.5.0"],
   "dependencies": [],
   "codeowners": [],
-  "version": "0.5"
+  "iot_class": "local_polling",
+  "version": "0.6"
 }

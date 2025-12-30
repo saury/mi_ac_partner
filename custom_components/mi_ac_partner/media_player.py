@@ -47,9 +47,7 @@ from homeassistant.const import (CONF_NAME, CONF_HOST, CONF_TOKEN,
 from homeassistant.components.media_player import (
     MediaPlayerEntity, PLATFORM_SCHEMA)
 from homeassistant.components.media_player.const import (
-    MEDIA_TYPE_MUSIC, MEDIA_TYPE_PLAYLIST, SUPPORT_NEXT_TRACK,
-    SUPPORT_PAUSE, SUPPORT_PLAY, SUPPORT_PLAY_MEDIA, SUPPORT_PREVIOUS_TRACK,
-    SUPPORT_SELECT_SOURCE, SUPPORT_VOLUME_SET, SUPPORT_TURN_OFF, SUPPORT_TURN_ON)
+    MediaType, MediaPlayerEntityFeature)
 from homeassistant.helpers import config_validation as cv
 from homeassistant.helpers.entity import Entity
 
@@ -61,9 +59,16 @@ ICON = 'mdi:radio'
 # SCAN_INTERVAL = datetime.timedelta(seconds=50)
 UPDATE_STATION_LIST = datetime.timedelta(minutes=60)
 
-SUPPORT_XIAOMIACPARTNER = SUPPORT_VOLUME_SET | SUPPORT_PAUSE | SUPPORT_PLAY |\
-    SUPPORT_NEXT_TRACK | SUPPORT_PREVIOUS_TRACK | SUPPORT_SELECT_SOURCE | \
-    SUPPORT_TURN_ON | SUPPORT_TURN_OFF
+SUPPORT_XIAOMIACPARTNER = (
+    MediaPlayerEntityFeature.VOLUME_SET
+    | MediaPlayerEntityFeature.PAUSE
+    | MediaPlayerEntityFeature.PLAY
+    | MediaPlayerEntityFeature.NEXT_TRACK
+    | MediaPlayerEntityFeature.PREVIOUS_TRACK
+    | MediaPlayerEntityFeature.SELECT_SOURCE
+    | MediaPlayerEntityFeature.TURN_ON
+    | MediaPlayerEntityFeature.TURN_OFF
+)
 
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Optional(CONF_NAME, default=DEFAULT_NAME): cv.string,
@@ -220,7 +225,7 @@ class XiaomiacPartner(MediaPlayerEntity):
     @property
     def media_content_type(self):
         """Return the media type."""
-        return MEDIA_TYPE_MUSIC
+        return MediaType.MUSIC
 
     async def _fetch(self, url):
         timeout = aiohttp.ClientTimeout(total=10) # 获取列表时最大10s超时
